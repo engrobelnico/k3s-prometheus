@@ -1,8 +1,10 @@
 kube-prometheus-stack:
     namespaceOverride: "prometheus"
+    prometheus-node-exporter:
+      hostRootFsMount: 
+        enabled: false
+        mountPropagation: HostToContainer
     prometheus:
-      prometheus-node-exporter:
-        hostRootFsMount: false
       prometheusSpec:
         additionalScrapeConfigs :
         - job_name: 'prometheus'
