@@ -1,0 +1,62 @@
+kube-prometheus-stack:
+    namespaceOverride: "prometheus"
+    prometheus:
+      prometheusSpec:
+        additionalScrapeConfigs :
+        - job_name: 'prometheus'
+          static_configs:
+            - targets: ['prometheus-operated:9090']
+        - job_name: 'argocd'
+          # retreive argocd values.
+          metrics_path: /metrics 
+          scrape_interval: 5s
+          static_configs:
+            - targets: ['argocd-metrics.argocd.svc.cluster.local:8082']
+        - job_name: 'traefik'
+          kubernetes_sd_configs:
+            - role: pod
+              selectors:
+                - role: pod
+                  label: "k8s-app=traefik-ingress-lb"
+          relabel_configs:
+            - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
+              action: keep
+              regex: true
+            - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_path]
+              action: replace
+              target_label: __metrics_path__
+              regex: (.+)
+            - source_labels: [__address__, __meta_kubernetes_pod_annotation_prometheus_io_port]
+              action: replace
+              regex: ([^:]+)(?::\\d+)?;(\\d+)
+              replacement: $1:$2
+              target_label: __address__
+            - source_labels: [__meta_kubernetes_service_annotation_prometheus_io_scheme]
+              action: replace
+              target_label: __scheme__
+              regex: (http?)
+            - action: labelmap
+              regex: __meta_kubernetes_pod_label_(.+)
+            - source_labels: [__meta_kubernetes_namespace]
+              action: replace
+              target_label: namespace
+            - source_labels: [__meta_kubernetes_service_name]
+              action: replace
+              target_label: service
+            - source_labels: [__meta_kubernetes_pod_container_name]
+              action: replace
+              target_label: container
+        #- job_name: "kubernetes-pods"
+        #  kubernetes_sd_configs:
+        #    - role: pod
+        #  relabel_configs:
+        #    - action: labelmap
+        #      regex: __meta_kubernetes_pod_label_(.+)
+            # Expose Pod namespace as metric namespace label
+        #    - source_labels: [__meta_kubernetes_namespace]
+        #      action: replace
+        #      target_label: namespace
+            # Expose Pod name as metric name label
+        #    - source_labels: [__meta_kubernetes_pod_name]
+        #      action: replace
+        #      target_label: pod
