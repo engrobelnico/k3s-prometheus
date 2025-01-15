@@ -1,5 +1,7 @@
 kube-prometheus-stack:
     namespaceOverride: "prometheus"
+    prometheus-node-exporter:
+      hostRootFsMount: false
     prometheus:
       prometheusSpec:
         additionalScrapeConfigs :
