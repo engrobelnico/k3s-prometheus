@@ -1,9 +1,12 @@
 kube-prometheus-stack:
     namespaceOverride: "prometheus"
     prometheus-grafana:
-      server:
-        serve_from_sub_path: true
-        root_url: http://kube.local/grafana/
+       grafana.ini:
+        server:
+          domain: kube.local
+          protocol: http
+          root_url: "%(protocol)s://%(domain)s/grafana/"
+          serve_from_sub_path: true
     prometheus-node-exporter:
       hostRootFsMount: 
         enabled: false
