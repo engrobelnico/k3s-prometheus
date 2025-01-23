@@ -1,6 +1,6 @@
 kube-prometheus-stack:
     namespaceOverride: "prometheus"
-    grafana:
+    prometheus-grafana:
       server:
         serve_from_sub_path: true
         root_url: http://kube.local/grafana/
