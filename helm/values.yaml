@@ -1,6 +1,6 @@
 kube-prometheus-stack:
     namespaceOverride: "prometheus"
-    prometheus-grafana:
+    grafana:
        grafana.ini:
         server:
           domain: kube.local
