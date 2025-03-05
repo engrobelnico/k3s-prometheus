@@ -9,7 +9,7 @@ spec:
   project: default
   source:
     path: helm
-    repoURL: https://github.com/nicolasleborgnelv/k3s-prometheus.git
+    repoURL: https://github.com/engrobelnico/k3s-prometheus.git
     targetRevision: main
     helm:
       valueFiles:
