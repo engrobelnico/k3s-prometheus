@@ -1,17 +1,19 @@
-apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRoute
+kind: Ingress
+apiVersion: networking.k8s.io/v1
 metadata:
   name: grafana
   namespace: prometheus
   annotations:
-    kubernetes.io/ingress.class: traefik
+    spec.ingressClassName: traefik
 spec:
-  entryPoints:
-    - web
-  routes:
-    - match: Host(`kube.local`) && (PathPrefix(`/grafana`))
-      kind: Rule
-      services:
-      - name: prometheus-grafana
-        port: 80
-        namespace: prometheus
+  rules:
+    - http:
+        paths:
+          - path: /grafana
+            pathType: Prefix
+            backend:
+              service:
+                name: prometheus-grafana
+                namespace: prometheus
+                port:
+                  number: 80
