@@ -17,6 +17,12 @@ kube-prometheus-stack:
         - job_name: 'prometheus'
           static_configs:
             - targets: ['prometheus-operated:9090']
+        - job_name: 'kyverno'
+          # retreive argocd values.
+          metrics_path: /metrics 
+          scrape_interval: 5s
+          static_configs:
+            - targets: ['kyverno-svc-metrics.kyverno.svc.cluster.local:8000']
         - job_name: 'argocd'
           # retreive argocd values.
           metrics_path: /metrics 
