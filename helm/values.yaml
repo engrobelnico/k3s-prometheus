@@ -23,6 +23,12 @@ kube-prometheus-stack:
           scrape_interval: 5s
           static_configs:
             - targets: ['kyverno-svc-metrics.kyverno.svc.cluster.local:8000']
+        - job_name: 'kyverno-policies'
+          # retreive argocd values.
+          metrics_path: /metrics 
+          scrape_interval: 5s
+          static_configs:
+            - targets: ['policy-reporter.kyverno.svc.cluster.local:8080']
         - job_name: 'argocd'
           # retreive argocd values.
           metrics_path: /metrics 
