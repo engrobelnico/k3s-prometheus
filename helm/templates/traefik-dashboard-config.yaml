@@ -6,5 +6,5 @@ metadata:
   name: traefik-dashboard-config
   namespace: prometheus
 data:
-  argocd.json: |-
+  traefik.json: |-
 {{ ( .Files.Get "dashboard/traefik.json") | indent 4 }}
