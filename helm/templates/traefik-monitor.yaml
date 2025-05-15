@@ -7,7 +7,7 @@ metadata:
   name: traefik
 spec:
   endpoints:
-  - port: metrics
+  - port: web
   namespaceSelector:
     matchNames:
     - kube-system
