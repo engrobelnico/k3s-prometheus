@@ -1,16 +1,18 @@
 apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
+kind: PodMonitor
 metadata:
   labels:
-    app: traefik
-    release: prometheus
-  name: traefik
+    team: monitoring
+  name: traefik-pod-monitor
+  namespace: traefik
 spec:
-  endpoints:
-  - port: web
   namespaceSelector:
     matchNames:
-    - kube-system
+      - traefik
+  podMetricsEndpoints:
+    - port: traefik
+      path: /metrics
+      interval: 15s
   selector:
     matchLabels:
       app: traefik
