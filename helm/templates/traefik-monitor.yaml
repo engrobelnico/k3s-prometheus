@@ -10,7 +10,7 @@ spec:
     matchNames:
       - traefik
   podMetricsEndpoints:
-    - port: traefik
+    - port: web
       path: /metrics
       interval: 15s
   selector:
