@@ -4,7 +4,7 @@ metadata:
   labels:
     team: monitoring
   name: traefik-pod-monitor
-  namespace: traefik
+  namespace: kube-system
 spec:
   namespaceSelector:
     matchNames:
