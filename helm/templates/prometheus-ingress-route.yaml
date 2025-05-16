@@ -15,4 +15,4 @@ spec:
               service:
                 name: prometheus-operated
                 port:
-                  number: http-web
+                  number: 9090
