@@ -11,8 +11,6 @@ kube-prometheus-stack:
       hostRootFsMount: 
         enabled: false
         mountPropagation: HostToContainer
-      service:
-        targetPOrt: 9200
     prometheus:
       prometheusSpec:
         additionalScrapeConfigs :
