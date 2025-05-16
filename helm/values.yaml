@@ -28,7 +28,7 @@ kube-prometheus-stack:
           metrics_path: /metrics 
           scrape_interval: 5s
           static_configs:
-            - targets: ['traefik.kube-system.svc.cluster.local:9100']
+            - targets: ['traefik-dashboard.kube-system.svc.cluster.local:9000']
         - job_name: 'kyverno-policies'
           # retreive argocd values.
           metrics_path: /metrics 
