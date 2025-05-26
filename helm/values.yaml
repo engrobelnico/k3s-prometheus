@@ -16,6 +16,8 @@ kube-prometheus-stack:
         mountPropagation: HostToContainer
     prometheus:
       prometheusSpec:
+        externalUrl: "http://kube.local/prometheus/"
+        routePrefix: /prometheus
         additionalScrapeConfigs :
         - job_name: 'kyverno'
           # retreive argocd values.
