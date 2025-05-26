@@ -2,7 +2,7 @@ apiVersion: kyverno.io/v2 # Check API version for your Kyverno; v1 for older
 kind: PolicyException
 metadata:
   name: prometheus-node-exporter-hostaccess
-  namespace: prometheus # Or the namespace configured for exceptions, or prometheus namespace
+  namespace: kyverno # Or the namespace configured for exceptions, or prometheus namespace
 spec:
   exceptions:
     # List the *exact* policy and rule names you found in Step 1
