@@ -40,7 +40,7 @@ kube-prometheus-stack:
           metrics_path: /metrics 
           scrape_interval: 5s
           static_configs:
-            - targets: ['argocd-metrics.argocd.svc.cluster.local:8083']
+            - targets: ['argocd-metrics.argocd.svc.cluster.local:8082']
         - job_name: 'prometheus'
           static_configs:
             - targets: ['prometheus-operated:9090']  
