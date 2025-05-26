@@ -3,11 +3,11 @@ apiVersion: networking.k8s.io/v1
 metadata:
   name: prometheus
   namespace: prometheus
-  annotations:
-    spec.ingressClassName: traefik
 spec:
+  ingressClassName: traefik # Correct field for specifying the Ingress controller
   rules:
-    - http:
+   - host: kube.local
+      http:
         paths:
           - path: /prometheus
             pathType: Prefix
