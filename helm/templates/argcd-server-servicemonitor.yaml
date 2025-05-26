@@ -6,7 +6,7 @@ metadata:
   name: argocd-server-metrics
 spec:
   endpoints:
-  - port: 8083
+  - port: "8083"
   namespaceSelector:
     matchNames:
     - argocd
