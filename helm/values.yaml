@@ -17,9 +17,6 @@ kube-prometheus-stack:
     prometheus:
       prometheusSpec:
         additionalScrapeConfigs :
-        - job_name: 'prometheus'
-          static_configs:
-            - targets: ['prometheus-operated:9090']
         - job_name: 'kyverno'
           # retreive argocd values.
           metrics_path: /metrics 
@@ -44,6 +41,9 @@ kube-prometheus-stack:
           scrape_interval: 5s
           static_configs:
             - targets: ['argocd-metrics.argocd.svc.cluster.local:8083']
+        - job_name: 'prometheus'
+          static_configs:
+            - targets: ['prometheus-operated:9090']  
           relabel_configs:
             - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
               action: keep
