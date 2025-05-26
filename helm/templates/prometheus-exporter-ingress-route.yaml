@@ -15,4 +15,4 @@ spec:
               service:
                 name: prometheus-prometheus-node-exporter
                 port:
-                  number: 9100
+                  number: 9200
