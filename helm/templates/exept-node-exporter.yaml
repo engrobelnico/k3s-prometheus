@@ -1,0 +1,43 @@
+apiVersion: kyverno.io/v2 # Check API version for your Kyverno; v1 for older
+kind: PolicyException
+metadata:
+  name: prometheus-node-exporter-hostaccess
+  namespace: prometheus # Or the namespace configured for exceptions, or prometheus namespace
+spec:
+  exceptions:
+    # List the *exact* policy and rule names you found in Step 1
+    - policyName: "disallow-host-ports" # Example policy name
+      ruleNames: 
+        - "host-ports-none"  # Example rule name within that policy
+    - policyName: "disallow-host-namespaces" # Example policy name
+      ruleNames: 
+        - "host-namespaces"     # Example rule name
+    - policyName: "disallow-host-path" # Example policy name
+      ruleNames: 
+        - "host-path"     # Example rule name
+    # Add entries for all policies/rules blocking node-exporter
+  match:
+    any: # Match if any of the resource descriptions below are met
+    - resources:
+        kinds:
+          - DaemonSet
+        # Use EITHER names/namespaces OR selectors, not both for the same resource entry
+        namespaces:
+          - "prometheus" # Your prometheus namespace
+        # You can use names with wildcards if they are predictable
+        # names:
+        #  - "*-prometheus-node-exporter"
+        # Or better, use selectors:
+        selector:
+          matchLabels:
+            # Verify this label from your node-exporter DaemonSet
+            app.kubernetes.io/name: prometheus-node-exporter
+    - resources:
+        kinds:
+          - Pod
+        namespaces:
+          - "prometheus" # Your prometheus namespace
+        selector:
+          matchLabels:
+            # Verify this label from your node-exporter Pods
+            app.kubernetes.io/name: prometheus-node-exporter
