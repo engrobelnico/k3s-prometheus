@@ -6,6 +6,7 @@ metadata:
   labels:
     app: strimzi
     serviceMonitorSelector: prometheus
+    release: prometheus
 spec:
   selector:
     matchLabels:
@@ -25,6 +26,7 @@ metadata:
   labels:
     app: strimzi
     serviceMonitorSelector: prometheus
+    release: prometheus
 spec:
   selector:
     matchLabels:
@@ -44,6 +46,7 @@ metadata:
   labels:
     app: strimzi
     serviceMonitorSelector: prometheus
+    release: prometheus
 spec:
   selector:
     matchLabels:
@@ -63,6 +66,7 @@ metadata:
   labels:
     app: strimzi
     serviceMonitorSelector: prometheus
+    release: prometheus
 spec:
   selector:
     matchExpressions:
