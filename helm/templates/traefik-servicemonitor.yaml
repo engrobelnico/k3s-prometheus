@@ -3,6 +3,7 @@ kind: ServiceMonitor
 metadata:
   labels:
     serviceMonitorSelector: prometheus
+    release: prometheus
   name: traefik
 spec:
   endpoints:
