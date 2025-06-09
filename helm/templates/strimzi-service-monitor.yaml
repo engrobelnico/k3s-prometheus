@@ -1,0 +1,26 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: lv-cluster-kafka-exporter-monitor
+  namespace: prometheus # Namespace where your Prometheus is running
+  labels:
+    # These labels are used by Prometheus to discover this ServiceMonitor.
+    # Adjust them to match your Prometheus's 'serviceMonitorSelector' configuration.
+    # For example, if Prometheus selects on 'release: prometheus-stack', add that label here.
+    # Example:
+    # release: prometheus-stack
+    # team: my-monitoring-team
+    app.kubernetes.io/name: lv-cluster-kafka-exporter
+    serviceMonitorSelector: prometheus
+spec:
+  selector:
+    matchLabels:
+      strimzi.io/cluster: lv-cluster # Matches your Kafka cluster name
+      strimzi.io/name: lv-cluster-kafka-exporter # Name of the KafkaExporter service
+  namespaceSelector:
+    matchNames:
+      - strimzi # Namespace where Kafka and KafkaExporter service are deployed
+  endpoints:
+  - port: tcp-prometheus # Strimzi names the exporter service port 'tcp-prometheus'
+    interval: 30s       # Scrape interval
+    path: /metrics      # Metrics path (default for Kafka Exporter)
