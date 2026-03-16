@@ -12,6 +12,11 @@ sudo kubectl describe service traefik --namespace kube-system
 sudo kubectl get servicemonitor --namespace prometheus
 sudo kubectl describe service --all-namespaces | grep -i nodeport
 
+# change grafana password
+sudo kubectl get pods -n prometheus | grep -i grafana
+sudo kubectl exec -n prometheus -c grafana <grafana pod> -- bin/grafana-cli admin reset-admin-password <password>
+
+
 https://k3s.rocks/metrics/
 
 https://github.com/cablespaghetti/k3s-monitoring/blob/master/traefik-servicemonitor.yaml
