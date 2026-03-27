@@ -18,6 +18,17 @@ kube-prometheus-stack:
       prometheusSpec:
         externalUrl: "http://kube.local/prometheus/"
         routePrefix: /prometheus
+        remoteWrite:
+          - url: "https://opensearch.opensearch.svc.cluster.local:9200/_plugins/_observability/prometheus"
+            tlsConfig:
+              insecureSkipVerify: true
+            basicAuth:
+              username:
+                name: opensearch-admin-password
+                key: username
+              password:
+                name: opensearch-admin-password
+                key: password
         additionalScrapeConfigs :
         - job_name: 'kyverno'
           # retreive argocd values.
