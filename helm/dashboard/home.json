@@ -82,7 +82,7 @@
       "title": "Kyverno Dashboards",
       "tooltip": "Open existing Kyverno dashboards in Grafana",
       "type": "link",
-      "url": "/grafana/d/20c0d61b-42f3-46b4-8984-25b563971b1c/kyverno"
+      "url": "/grafana/d/20c0d61b-42f3-46b4-8984-25b563971b1c"
     },
     {
       "asDropdown": false,
@@ -498,7 +498,7 @@
       },
       "id": 5,
       "options": {
-        "content": "# Platform dashboards\n\n- [Argo CD dashboard](/grafana/d/LCAgc9rWz/argocd)\n- [Kyverno dashboard](/grafana/d/20c0d61b-42f3-46b4-8984-25b563971b1c/kyverno)\n- [Traefik dashboard](/grafana/d/n5bu_kv4k/traefik-official-kubernetes-dashboard)\n- [OpenSearch dashboard](/grafana/d/opensearch-overview/opensearch-exporter-prometheus-community)",
+        "content": "# Platform dashboards\n\n- [Argo CD dashboard](/grafana/d/LCAgc9rWz/argocd)\n- [Kyverno dashboard](/grafana/d/20c0d61b-42f3-46b4-8984-25b563971b1c)\n- [Traefik dashboard](/grafana/d/n5bu_kv4k/traefik-official-kubernetes-dashboard)\n- [OpenSearch dashboard](/grafana/d/opensearch-overview/opensearch-exporter-prometheus-community)",
         "mode": "markdown"
       },
       "title": "Quick Links",
