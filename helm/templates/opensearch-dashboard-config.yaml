@@ -6,5 +6,5 @@ metadata:
   name: opensearch-dashboard-config
   namespace: prometheus
 data:
-  argocd.json: |-
+  opensearch.json: |-
 {{ ( .Files.Get "dashboard/opensearch.json") | indent 4 }}
