@@ -2662,6 +2662,7 @@
   },
   "timezone": "browser",
   "title": "OpenSearch Exporter (Prometheus Community)",
+  "uid": "opensearch-overview",
   "version": 0,
   "description": "OpenSearch observability dashboard based on metrics exposed by prometheuscommunity/elasticsearch-exporter."
 }
