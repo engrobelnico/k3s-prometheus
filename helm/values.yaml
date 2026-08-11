@@ -7,6 +7,8 @@ kube-prometheus-stack:
           protocol: http
           root_url: "%(protocol)s://%(domain)s/grafana/"
           serve_from_sub_path: true
+        dashboards:
+          default_home_dashboard_path: /tmp/dashboards/home.json
     prometheus-node-exporter:
       service:
          port: 9200
