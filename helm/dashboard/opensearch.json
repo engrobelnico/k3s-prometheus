@@ -74,7 +74,7 @@
           "tableColumn": "",
           "targets": [
             {
-              "expr": "max((elasticsearch_cluster_health_status{cluster=\"$cluster\",color=\"green\"} * 0) + (elasticsearch_cluster_health_status{cluster=\"$cluster\",color=\"yellow\"} * 1) + (elasticsearch_cluster_health_status{cluster=\"$cluster\",color=\"red\"} * 2))",
+              "expr": "scalar(max(elasticsearch_cluster_health_status{color=\"green\"}) or vector(0)) * 0 + scalar(max(elasticsearch_cluster_health_status{color=\"yellow\"}) or vector(0)) * 1 + scalar(max(elasticsearch_cluster_health_status{color=\"red\"}) or vector(0)) * 2",
               "format": "time_series",
               "intervalFactor": 2,
               "legendFormat": "",
@@ -154,21 +154,21 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "elasticsearch_cluster_health_status{cluster=\"$cluster\",color=\"green\"}",
+              "expr": "max(elasticsearch_cluster_health_status{color=\"green\"}) or vector(0)",
               "format": "time_series",
               "intervalFactor": 10,
               "legendFormat": "GREEN",
               "refId": "A"
             },
             {
-              "expr": "elasticsearch_cluster_health_status{cluster=\"$cluster\",color=\"yellow\"}",
+              "expr": "max(elasticsearch_cluster_health_status{color=\"yellow\"}) or vector(0)",
               "format": "time_series",
               "intervalFactor": 10,
               "legendFormat": "YELLOW",
               "refId": "B"
             },
             {
-              "expr": "elasticsearch_cluster_health_status{cluster=\"$cluster\",color=\"red\"}",
+              "expr": "max(elasticsearch_cluster_health_status{color=\"red\"}) or vector(0)",
               "format": "time_series",
               "intervalFactor": 10,
               "legendFormat": "RED",
