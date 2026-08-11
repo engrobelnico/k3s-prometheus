@@ -79,10 +79,10 @@
       "includeVars": false,
       "keepTime": false,
       "targetBlank": false,
-      "title": "Kyverno Dashboard",
-      "tooltip": "Open dedicated Kyverno dashboard",
+      "title": "Kyverno Dashboards",
+      "tooltip": "Open existing Kyverno dashboards in Grafana",
       "type": "link",
-      "url": "/grafana/d/kyverno-overview/kyverno-overview"
+      "url": "/grafana/dashboards?query=kyverno"
     },
     {
       "asDropdown": false,
@@ -110,10 +110,7 @@
   "liveNow": false,
   "panels": [
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -177,10 +174,7 @@
       },
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
+          "datasource": "Prometheus",
           "editorMode": "code",
           "expr": "100 * (sum(kube_node_status_condition{condition=\"Ready\",status=\"true\"}) / clamp_min(count(kube_node_status_condition{condition=\"Ready\",status=\"true\"}), 1))",
           "legendFormat": "",
@@ -192,10 +186,7 @@
       "type": "stat"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -249,10 +240,7 @@
       },
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
+          "datasource": "Prometheus",
           "editorMode": "code",
           "expr": "max(up{job=\"traefik\"}) or vector(0)",
           "legendFormat": "",
@@ -264,10 +252,7 @@
       "type": "stat"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -328,10 +313,7 @@
       },
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
+          "datasource": "Prometheus",
           "editorMode": "code",
           "expr": "max(up{job=\"kyverno\"}) or vector(0)",
           "legendFormat": "",
@@ -343,10 +325,7 @@
       "type": "stat"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -415,10 +394,7 @@
       },
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
+          "datasource": "Prometheus",
           "editorMode": "code",
           "expr": "scalar(max(elasticsearch_cluster_health_status{color=\"green\"}) or vector(0)) * 0 + scalar(max(elasticsearch_cluster_health_status{color=\"yellow\"}) or vector(0)) * 1 + scalar(max(elasticsearch_cluster_health_status{color=\"red\"}) or vector(0)) * 2",
           "legendFormat": "",
@@ -430,10 +406,7 @@
       "type": "stat"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -494,10 +467,7 @@
       },
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
+          "datasource": "Prometheus",
           "editorMode": "code",
           "expr": "100 * sum(argocd_app_info{sync_status=\"Synced\",health_status=\"Healthy\"}) / clamp_min(sum(argocd_app_info{health_status!=\"\"}), 1)",
           "legendFormat": "",
@@ -521,7 +491,7 @@
       },
       "id": 5,
       "options": {
-        "content": "# Platform dashboards\n\n- [Argo CD dashboard](/grafana/d/LCAgc9rWz/argocd)\n- [Kyverno dashboard](/grafana/d/kyverno-overview/kyverno-overview)\n- [Traefik dashboard](/grafana/d/n5bu_kv4k/traefik-official-kubernetes-dashboard)\n- [OpenSearch dashboard](/grafana/d/opensearch-overview/opensearch-exporter-prometheus-community)",
+        "content": "# Platform dashboards\n\n- [Argo CD dashboard](/grafana/d/LCAgc9rWz/argocd)\n- [Kyverno dashboards](/grafana/dashboards?query=kyverno)\n- [Traefik dashboard](/grafana/d/n5bu_kv4k/traefik-official-kubernetes-dashboard)\n- [OpenSearch dashboard](/grafana/d/opensearch-overview/opensearch-exporter-prometheus-community)",
         "mode": "markdown"
       },
       "title": "Quick Links",
