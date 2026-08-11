@@ -71,7 +71,7 @@
       "title": "Argo CD Dashboard",
       "tooltip": "Open dedicated Argo CD dashboard",
       "type": "link",
-      "url": "/grafana/d/LCAgc9rWz"
+      "url": "/grafana/d/LCAgc9rWz/argocd"
     },
     {
       "asDropdown": false,
@@ -82,7 +82,7 @@
       "title": "Kyverno Dashboards",
       "tooltip": "Open existing Kyverno dashboards in Grafana",
       "type": "link",
-      "url": "/grafana/d/20c0d61b-42f3-46b4-8984-25b563971b1c"
+      "url": "/grafana/d/20c0d61b-42f3-46b4-8984-25b563971b1c/kyverno"
     },
     {
       "asDropdown": false,
@@ -93,7 +93,7 @@
       "title": "Traefik Dashboard",
       "tooltip": "Open dedicated Traefik dashboard",
       "type": "link",
-      "url": "/grafana/d/n5bu_kv4k"
+      "url": "/grafana/d/n5bu_kv4k/traefik-official-kubernetes-dashboard"
     },
     {
       "asDropdown": false,
@@ -104,7 +104,7 @@
       "title": "OpenSearch Dashboard",
       "tooltip": "Open dedicated OpenSearch dashboard",
       "type": "link",
-      "url": "/grafana/d/opensearch-overview"
+      "url": "/grafana/d/opensearch-overview/opensearch-exporter-prometheus-community"
     }
   ],
   "liveNow": false,
@@ -498,7 +498,7 @@
       },
       "id": 5,
       "options": {
-        "content": "# Platform dashboards\n\n- [Argo CD dashboard](/grafana/d/LCAgc9rWz)\n- [Kyverno dashboard](/grafana/d/20c0d61b-42f3-46b4-8984-25b563971b1c)\n- [Traefik dashboard](/grafana/d/n5bu_kv4k)\n- [OpenSearch dashboard](/grafana/d/opensearch-overview)",
+        "content": "# Platform dashboards\n\n- [Argo CD dashboard](/grafana/d/LCAgc9rWz/argocd)\n- [Kyverno dashboard](/grafana/d/20c0d61b-42f3-46b4-8984-25b563971b1c/kyverno)\n- [Traefik dashboard](/grafana/d/n5bu_kv4k/traefik-official-kubernetes-dashboard)\n- [OpenSearch dashboard](/grafana/d/opensearch-overview/opensearch-exporter-prometheus-community)",
         "mode": "markdown"
       },
       "title": "Quick Links",
