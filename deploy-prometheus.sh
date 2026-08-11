@@ -21,7 +21,17 @@ main () {
     sudo kubectl apply -n argocd -f prometheus.yaml
     # sync the application
     argocd login kube.local:443 --grpc-web-root-path /argocd-server --insecure  --username admin --password $(sudo kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)
-    argocd app sync prometheus
+    syncOutput=$(argocd app sync prometheus --grpc-web-root-path /argocd-server 2>&1) || syncExit=$?
+    if [[ -n "${syncExit:-}" ]]; then
+        if [[ "$syncOutput" == *"another operation is already in progress"* ]]; then
+            echo "An Argo CD operation is already running for prometheus, waiting for completion..."
+            argocd app wait prometheus --operation --timeout 300 --grpc-web-root-path /argocd-server || true
+            argocd app sync prometheus --grpc-web-root-path /argocd-server
+        else
+            echo "$syncOutput"
+            return "$syncExit"
+        fi
+    fi
     # show access path
     echo "http://kube.local/prometheus"
     echo "http://kube.local/grafana"
