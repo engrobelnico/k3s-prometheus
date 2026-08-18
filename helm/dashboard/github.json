@@ -349,7 +349,7 @@
         {
           "datasource": "Prometheus",
           "editorMode": "code",
-          "expr": "probe_success{target=~\"github-.*\"}",
+          "expr": "max by (target) (probe_success{target=~\"github-.*\"})",
           "legendFormat": "{{target}}",
           "range": true,
           "refId": "A"
@@ -399,7 +399,7 @@
         {
           "datasource": "Prometheus",
           "editorMode": "code",
-          "expr": "probe_duration_seconds{target=~\"github-.*\"}",
+          "expr": "avg by (target) (probe_duration_seconds{target=~\"github-.*\"})",
           "legendFormat": "{{target}}",
           "range": true,
           "refId": "A"
@@ -450,7 +450,7 @@
         {
           "datasource": "Prometheus",
           "editorMode": "code",
-          "expr": "probe_http_status_code{target=~\"github-.*\"}",
+          "expr": "max by (target) (probe_http_status_code{target=~\"github-.*\"})",
           "legendFormat": "{{target}}",
           "range": true,
           "refId": "A"
