@@ -74,7 +74,7 @@
           "tableColumn": "",
           "targets": [
             {
-              "expr": "scalar(max(elasticsearch_cluster_health_status{color=\"green\"}) or vector(0)) * 0 + scalar(max(elasticsearch_cluster_health_status{color=\"yellow\"}) or vector(0)) * 1 + scalar(max(elasticsearch_cluster_health_status{color=\"red\"}) or vector(0)) * 2",
+              "expr": "((max(elasticsearch_cluster_health_status{color=\"green\",cluster=\"$cluster\"}) or vector(0)) * 0 + (max(elasticsearch_cluster_health_status{color=\"yellow\",cluster=\"$cluster\"}) or vector(0)) * 1 + (max(elasticsearch_cluster_health_status{color=\"red\",cluster=\"$cluster\"}) or vector(0)) * 2) and (count(elasticsearch_cluster_health_status{cluster=\"$cluster\"}) > 0)",
               "format": "time_series",
               "intervalFactor": 2,
               "legendFormat": "",

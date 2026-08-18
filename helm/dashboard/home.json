@@ -105,6 +105,17 @@
       "tooltip": "Open dedicated OpenSearch dashboard",
       "type": "link",
       "url": "/grafana/d/opensearch-overview/opensearch-exporter-prometheus-community"
+    },
+    {
+      "asDropdown": false,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
+      "targetBlank": false,
+      "title": "GitHub Status Dashboard",
+      "tooltip": "Open dedicated GitHub status dashboard",
+      "type": "link",
+      "url": "/grafana/d/github-status/github-status"
     }
   ],
   "liveNow": false,
@@ -355,6 +366,16 @@
                 }
               },
               "type": "value"
+            },
+            {
+              "options": {
+                "match": "null+nan",
+                "result": {
+                  "color": "gray",
+                  "text": "NOT DEPLOYED"
+                }
+              },
+              "type": "special"
             }
           ],
           "thresholds": {
@@ -403,7 +424,7 @@
         {
           "datasource": "Prometheus",
           "editorMode": "code",
-          "expr": "scalar(max(elasticsearch_cluster_health_status{color=\"green\"}) or vector(0)) * 0 + scalar(max(elasticsearch_cluster_health_status{color=\"yellow\"}) or vector(0)) * 1 + scalar(max(elasticsearch_cluster_health_status{color=\"red\"}) or vector(0)) * 2",
+          "expr": "((max(elasticsearch_cluster_health_status{color=\"green\"}) or vector(0)) * 0 + (max(elasticsearch_cluster_health_status{color=\"yellow\"}) or vector(0)) * 1 + (max(elasticsearch_cluster_health_status{color=\"red\"}) or vector(0)) * 2) and (count(elasticsearch_cluster_health_status) > 0)",
           "legendFormat": "",
           "range": true,
           "refId": "A"
@@ -498,11 +519,100 @@
       },
       "id": 5,
       "options": {
-        "content": "# Platform dashboards\n\n- [Argo CD dashboard](/grafana/d/LCAgc9rWz/argocd)\n- [Kyverno dashboard](/grafana/d/Rg8lWBG7k/kyverno-metrics)\n- [Traefik dashboard](/grafana/d/n5bu_kv4k/traefik-official-kubernetes-dashboard)\n- [OpenSearch dashboard](/grafana/d/opensearch-overview/opensearch-exporter-prometheus-community)",
+        "content": "# Platform dashboards\n\n- [Argo CD dashboard](/grafana/d/LCAgc9rWz/argocd)\n- [Kyverno dashboard](/grafana/d/Rg8lWBG7k/kyverno-metrics)\n- [Traefik dashboard](/grafana/d/n5bu_kv4k/traefik-official-kubernetes-dashboard)\n- [OpenSearch dashboard](/grafana/d/opensearch-overview/opensearch-exporter-prometheus-community)\n- [GitHub status dashboard](/grafana/d/github-status/github-status)",
         "mode": "markdown"
       },
       "title": "Quick Links",
       "type": "text"
+    },
+    {
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "index": 1,
+                  "text": "DEGRADED"
+                },
+                "1": {
+                  "index": 0,
+                  "text": "OPERATIONAL"
+                }
+              },
+              "type": "value"
+            },
+            {
+              "options": {
+                "match": "null+nan",
+                "result": {
+                  "color": "gray",
+                  "text": "NO DATA"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 6,
+        "x": 0,
+        "y": 12
+      },
+      "id": 7,
+      "links": [
+        {
+          "title": "Open GitHub status dashboard",
+          "url": "/grafana/d/github-status/github-status"
+        }
+      ],
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "targets": [
+        {
+          "datasource": "Prometheus",
+          "editorMode": "code",
+          "expr": "min(probe_success{target=\"github-status-overall\"})",
+          "legendFormat": "",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "GitHub Status",
+      "type": "stat"
     }
   ],
   "refresh": "30s",
