@@ -32,7 +32,7 @@
   "panels": [
     {
       "datasource": "Prometheus",
-      "description": "Overall GitHub status derived from https://www.githubstatus.com/api/v2/status.json. GREEN only when every GitHub component reports fully operational.",
+      "description": "Overall GitHub status derived from https://www.githubstatus.com/api/v2/status.json. RED when GitHub reports a minor, major, critical or maintenance indicator.",
       "fieldConfig": {
         "defaults": {
           "color": {

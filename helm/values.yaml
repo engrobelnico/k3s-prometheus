@@ -127,9 +127,11 @@ prometheus-blackbox-exporter:
           method: GET
           follow_redirects: true
           preferred_ip_protocol: "ip4"
-          # fails (probe_success=0) unless GitHub reports every component as fully operational
-          fail_if_body_not_matches_regexp:
-            - "\"indicator\":\"none\""
+          # Statuspage's CDN intermittently serves a JSON *schema* stub ({"indicator":"string"})
+          # instead of the real payload, so asserting the body matches "none" flaps.
+          # Only fail on an explicitly non-operational indicator instead.
+          fail_if_body_matches_regexp:
+            - '"indicator":"(minor|major|critical|maintenance)"'
   serviceMonitor:
     enabled: true
     defaults:
