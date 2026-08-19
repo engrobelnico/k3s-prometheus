@@ -118,6 +118,9 @@ prometheus-blackbox-exporter:
           valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
           follow_redirects: true
           preferred_ip_protocol: "ip4"
+          # Zscaler intercepts TLS on the dev workstation with a CA the image doesn't trust.
+          tls_config:
+            insecure_skip_verify: true
       github_status:
         prober: http
         timeout: 5s
@@ -132,6 +135,9 @@ prometheus-blackbox-exporter:
           # Only fail on an explicitly non-operational indicator instead.
           fail_if_body_matches_regexp:
             - '"indicator":"(minor|major|critical|maintenance)"'
+          # Zscaler intercepts TLS on the dev workstation with a CA the image doesn't trust.
+          tls_config:
+            insecure_skip_verify: true
   serviceMonitor:
     enabled: true
     defaults:
